@@ -14,7 +14,7 @@ Modifiqué los valores del choice para sesgar las posibilades que tiene para as�
 Al modificar reducir el valor del random y cambiar las posibles opciones logré hacer que se moviera hacia donde yo queria, o sea que el experimento fue un exito :).
 
 ### Actividad 03
-
+En una distribución uniforme 
 ### Actividad 04
 ### Actividad 05
 ### Actividad 06
@@ -22,6 +22,7 @@ Al modificar reducir el valor del random y cambiar las posibles opciones logré 
 
 
 ## Bitácora de reflexión
+
 
 
 
