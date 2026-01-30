@@ -161,5 +161,22 @@ class Particula {
 <img width="1019" height="729" alt="Captura de pantalla 2026-01-30 003448" src="https://github.com/user-attachments/assets/75dbb72a-a43a-44fb-a745-ab820c43206c" />
 
 ## Bitácora de reflexión
+### Actividad 08 ❀˖°
+★**1.** La diferencia principal es la conexión. **random()** genera valores totalmente aislados e impredecibles, lo que produce un resultado "ruidoso", como con estática. En cambio, **noise()** genera valores que dependen de sus vecinos, cada punto está vinculado al anterior para crear una transición suave y fluida.
+
+✿ Usaría el **random()** cuando quiera que se vea caótico o desordenado. Podría hacerlo con la posición de estrellas en el cielo.
+
+✿ Usaría el **noise()** cuando quiera imitar la naturaleza. Lo haría con el movimiento de las nubes o del mar.  
+
+
+★**2.** Una distribución de probabilidad es una "regla" que decide qué tan seguido ocurre un valor.  
+
+Visualmente, una caminata aleatoria con distribución uniforme se ve muy dispersa y desordenada, ya que el objeto tiene la misma probabilidad de moverse hacia cualquier dirección o distancia, llenando el espacio de forma plana y equitativa. En cambio, una caminata con distribución normal/gaussiana tiende a agrupar la mayoría de los pasos cerca de un punto central; esto produce un efecto visual de "núcleo" denso con bordes que se van dispersando gradualmente, como una nube de vapor.
+
+★**3.** La aleatoriedad en el arte generativo actúa como un "colaborador creativo" que rompe la rigidez matemática de las máquinas, aportando imperfección y naturalidad a las formas digitales. Cumple principalmente dos funciones: primero, otorga autonomía a la obra, permitiendo que la obra cambie continuamente de forma inesperada y haciendo que cada ejecución sea única; y segundo, aporta ritmo y sorpresa visual, evitando que los patrones se vuelvan repetitivos o predecibles para el espectador.
+
+★**4.** En mi obra usé el concepto de **Lévy Flight** para la aparición de las flores. Fue la elección adecuada porque buscaba que el jardín no se viera repetitivo. Al usar la lógica de "muchos pasos cortos y un gran salto ocasional", logré que las flores comunes crearan un sendero familiar, mientras que la flor azul especial aparece como una sorpresa visual rara, dándole ritmo y magia al jardín.
+
+★**5.** Un "walk" es un proceso donde un objeto se mueve paso a paso, y cada nueva posición depende de la anterior más un cambio al azar. La característica particular del Lévy Flight es su desigualdad: en lugar de que todos los pasos sean del mismo tamaño, combina muchísimos pasos pequeños con saltos gigantes esporádicos. Esto imita muy bien, en mi caso, el revoloteo de un hada al volar.
 
 
