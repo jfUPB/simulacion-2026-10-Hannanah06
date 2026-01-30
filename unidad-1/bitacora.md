@@ -30,7 +30,8 @@ El movimiento fluido de las hadas se logra con Ruido Perlin, que permite un desp
 La diversidad de las flores utiliza la lógica de Lévy Flight para gestionar la probabilidad: las flores comunes aparecen con frecuencia, mientras que una flor azul especial surge como un "evento raro". Finalmente, el brillo del hada se genera con una Distribución Uniforme, que reparte partículas de luz exactamente en su contorno mediante trigonometría, creando un "aura mágica" equilibrada.  
 
 **Código:**
-```
+
+```js
 let grupoHadas = [];
 
 function setup() {
@@ -154,9 +155,11 @@ class Particula {
   isDead() { return this.vida <= 0; }
 }
 ```
+
 **Enlace:** https://editor.p5js.org/Hannanah06/full/cOBrlvLKU  
 
 <img width="1019" height="729" alt="Captura de pantalla 2026-01-30 003448" src="https://github.com/user-attachments/assets/75dbb72a-a43a-44fb-a745-ab820c43206c" />
 
 ## Bitácora de reflexión
+
 
