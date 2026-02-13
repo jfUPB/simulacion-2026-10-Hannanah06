@@ -117,10 +117,13 @@ Por otro lado, **lerpColor()** realiza exactamente la misma operación pero en e
 
 
 ## Bitácora de aplicación 
-### Actividad 09
+### Actividad 09 ⋆⭒˚.⋆🔭
+**Concepto: Stargazing** 
+
 
 
 ## Bitácora de reflexión
+
 
 
 
