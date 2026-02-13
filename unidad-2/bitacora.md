@@ -124,14 +124,163 @@ La base del movimiento es una aceleración constante por gravedad, aplicada como
 
 Para la interacción, utilicé aceleración tangencial manual vinculada a las teclas. Al presionar la derecha, aplico una fuerza a favor del movimiento actual que aumenta la magnitud de la velocidad, permitiendo que las estrellas alcancen un color rosa vibrante. Al presionar la izquierda, aplico una fuerza de oposición que reduce la velocidad gradualmente, activando un tono amarillo que evoca calma y resistencia.  
 
-Finalmente, implementé una aceleración de evento crítico para la función del deseo (tecla W). Al activarse, una estrella seleccionada recibe un impulso masivo que ignora las reglas de fricción normales. Esta aceleración extrema dispara la velocidad de la partícula hasta que abandona el lienzo, simbolizando visualmente un anhelo que cobra fuerza propia y trasciende el entorno común.
+Finalmente, implementé una aceleración de evento crítico para la función del deseo (tecla W). Al activarse, una estrella seleccionada recibe un impulso masivo que ignora las reglas de fricción normales. Esta aceleración extrema dispara la velocidad de la partícula hasta que abandona el lienzo, simbolizando visualmente un anhelo que cobra fuerza propia y trasciende el entorno común.  
 
+**Código:**
+```js
+let stars = [];
+let maxStars = 150; 
+let interactionState = 0; 
 
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  rectMode(CENTER);
+  for (let i = 0; i < maxStars; i++) {
+    stars.push(new Star());
+  }
+}
+
+function draw() {
+  background(10, 15, 45, 45); 
+
+  if (random(1) < 0.2) {
+    let inactiveStar = stars.find(s => !s.active);
+    if (inactiveStar) inactiveStar.activate();
+  }
+
+  for (let star of stars) {
+    if (star.active) {
+      star.update();
+      star.checkEdges();
+      star.show();
+    }
+  }
+}
+
+function keyPressed() {
+  if (keyCode === RIGHT_ARROW) interactionState = 1; 
+  if (keyCode === LEFT_ARROW) interactionState = -1; 
+  
+  if (key === 'w' || key === 'W') {
+    let currentVisible = stars.filter(s => s.active && !s.isWish);
+    if (currentVisible.length > 0) {
+      let chosen = random(currentVisible);
+      chosen.isWish = true; 
+    }
+  }
+}
+
+function keyReleased() {
+  if (keyCode === RIGHT_ARROW || keyCode === LEFT_ARROW) {
+    interactionState = 0;
+  }
+}
+
+class Star {
+  constructor() {
+    this.active = false;
+    this.isWish = false;
+    this.pos = createVector(0, 0);
+    this.vel = createVector(0, 0);
+    this.acc = createVector(0, 0);
+    this.currentColor = color(180, 140, 255);
+  }
+
+  activate() {
+    this.active = true;
+    this.isWish = false;
+    this.pos = createVector(random(-100, width * 0.4), random(-100, height * 0.1));
+    this.vel = createVector(random(1, 2.5), random(1, 2.5));
+    this.acc = createVector(0, 0);
+    this.size = random(5, 10);
+    this.baseMaxSpeed = random(3, 6); 
+    this.maxSpeed = this.baseMaxSpeed;
+    this.angle = random(TWO_PI);
+    this.currentColor = color(180, 140, 255);
+  }
+
+  update() {
+    let gravity = createVector(0.015, 0.03);
+    this.acc.add(gravity);
+
+    if (this.isWish) {
+      let boost = this.vel.copy().normalize().mult(1.2); 
+      this.acc.add(boost);
+      this.maxSpeed = 30; 
+    } else {
+      if (interactionState === 1) {
+        // --- ACELERACIÓN POTENTE ---
+        let push = this.vel.copy().normalize().mult(0.3);
+        this.acc.add(push);
+        this.maxSpeed = 20; // Permite ir más rápido mientras aceleras
+      } else if (interactionState === -1) {
+        // Frenado suave
+        let brake = this.vel.copy().normalize().mult(-0.08);
+        this.acc.add(brake);
+        this.maxSpeed = this.baseMaxSpeed;
+      } else {
+        this.maxSpeed = this.baseMaxSpeed;
+      }
+    }
+
+    this.vel.add(this.acc);
+    this.vel.limit(this.maxSpeed);
+    this.pos.add(this.vel);
+    this.acc.mult(0); 
+    
+    this.angle += this.vel.mag() * 0.04;
+  }
+
+  checkEdges() {
+    if (this.pos.x > width + 100 || this.pos.y > height + 100) {
+      this.active = false;
+      this.isWish = false;
+    }
+  }
+
+  show() {
+    let lila = color(180, 140, 255);
+    let rosa = color(255, 80, 180);
+    let amarillo = color(255, 255, 100);
+    let turquesa = color(0, 255, 240);
+
+    let target = lila;
+    if (this.isWish) target = turquesa;
+    else if (interactionState === 1) target = rosa;
+    else if (interactionState === -1) target = amarillo;
+
+    this.currentColor = lerpColor(this.currentColor, target, 0.1);
+
+    push();
+    translate(this.pos.x, this.pos.y);
+    
+    stroke(this.currentColor);
+    // La estela crece con la velocidad
+    strokeWeight(this.isWish ? this.size * 0.7 : this.size * 0.4);
+    let tailLen = this.isWish ? -20 : -5;
+    let t = this.vel.copy().normalize().mult(tailLen * (this.vel.mag() * 0.3));
+    line(0, 0, t.x, t.y);
+
+    rotate(this.angle);
+    noStroke();
+    fill(this.currentColor);
+    let s = this.isWish ? this.size * 1.6 : this.size;
+    rect(0, 0, s, s);
+    
+    fill(255, 250);
+    rect(0, 0, s * 0.4, s * 0.4);
+    pop();
+  }
+}
+```
+
+**Enlace:** 
 
 
 
 
 ## Bitácora de reflexión
+
 
 
 
