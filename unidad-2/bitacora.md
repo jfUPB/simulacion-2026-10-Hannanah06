@@ -120,6 +120,8 @@ Por otro lado, **lerpColor()** realiza exactamente la misma operación pero en e
 ### Actividad 09 ⋆⭒˚.⋆🔭
 **Concepto: Wishing Shower** es una pieza de arte generativo que transforma un fenómeno físico ゛una lluvia de meteoros ˎˊ˗ en una experiencia interactiva sobre la esperanza y la intención. La pieza no busca solo representar la caída de cuerpos celestes, sino invitar al espectador a participar en un cielo "vivo". Evoca esa sensación infantil de mirar al cielo y sentir que, entre miles de luces, hay una que brilla específicamente para nosotros.  
 
+El uso de Lila como base evoca tranquilidad y misterio, mientras que el Rosa vibrante al acelerar y el Amarillo al frenar sirven como indicadores visuales de la energía cinética. El Turquesa de los deseos fue elegido por su brillo etéreo, separándose cromáticamente de la paleta cálida para resaltar su importancia.
+
 La base del movimiento es una aceleración constante por gravedad, aplicada como un vector inclinado hacia la esquina inferior derecha. Esto genera un flujo natural y rítmico, donde cada estrella aumenta su velocidad de forma progresiva desde que nace, simulando la caída libre de un meteoro en la atmósfera. 
 
 Para la interacción, utilicé aceleración tangencial manual vinculada a las teclas. Al presionar la derecha, aplico una fuerza a favor del movimiento actual que aumenta la magnitud de la velocidad, permitiendo que las estrellas alcancen un color rosa vibrante. Al presionar la izquierda, aplico una fuerza de oposición que reduce la velocidad gradualmente, activando un tono amarillo que evoca calma y resistencia.  
@@ -274,12 +276,14 @@ class Star {
 }
 ```
 
-**Enlace:** 
+**Enlace:** https://editor.p5js.org/Hannanah06/full/Gd10TKHsi  
 
+<img width="1175" height="783" alt="Captura de pantalla 2026-02-13 023945" src="https://github.com/user-attachments/assets/c2983afe-b3fe-4331-a925-3c8cc02335df" />
 
 
 
 ## Bitácora de reflexión
+
 
 
 
