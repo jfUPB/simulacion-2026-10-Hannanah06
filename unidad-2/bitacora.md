@@ -14,6 +14,19 @@ El trabajo que más me gustó fue "Crab People" de **Raven Kwok**
 ### Actividad 03
 
 ### Actividad 04
+#### 1) ¿Qué resultado esperas obtener en el programa anterior?
+**Respuesta:** Esperaba que el vector *position* mantuviera sus valores originales (6, 9) después de ejecutar la función, asumiendo que v es solo una copia temporal.
+
+#### 2) ¿Qué resultado obtuviste?
+**Respuesta:** el resultado obtenido en la consola será primero p5.Vector Object [6, 9, 0] y luego p5.Vector Object [20, 30, 0]. Esto demuestra que los cambios realizados dentro de la función playingVector afectaron directamente a la variable global.
+
+#### 3) Recuerda los conceptos de paso por valor y paso por referencia en programación. ☑
+
+#### 4) ¿Qué tipo de paso se está realizando en el código?
+**Respuesta:** En este código se está realizando un **paso por referencia**. En JavaScript, cuando se pasa un objeto (como un vector de p5.js) a una función, no se está enviando una copia de sus datos, sino una "dirección" o referencia a su ubicación en la memoria. Por lo tanto, tanto el nombre *position* fuera de la función como el nombre v dentro de ella apuntan exactamente al mismo objeto físico; cualquier modificación en los atributos .x o .y de uno se reflejará instantáneamente en el otro.
+
+#### 5) ¿Qué aprendiste?
+**Respuesta:** Aprendí que los vectores en p5.js son objetos mutables y que debemos ser cuidadosos al manipularlos dentro de funciones. Si la intención es modificar un vector sin alterar el original, primero se debería crear una copia usando el método copy(). Esta distinción es fundamental para evitar "efectos secundarios" o errores lógicos donde la posición o velocidad de un elemento cambia de forma inesperada en otras partes del programa.
 
 ### Actividad 05
 #### 1) ¿Para qué sirve el método mag()? Nota que hay otro método llamado magSq(). ¿Cuál es la diferencia entre ambos? ¿Cuál es más eficiente?
@@ -108,6 +121,7 @@ Por otro lado, **lerpColor()** realiza exactamente la misma operación pero en e
 
 
 ## Bitácora de reflexión
+
 
 
 
