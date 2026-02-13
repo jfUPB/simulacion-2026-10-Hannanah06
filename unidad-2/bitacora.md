@@ -78,12 +78,13 @@ function drawArrow(base, vec, myColor) {
 Por otro lado, **lerpColor()** realiza exactamente la misma operación pero en el espacio de color; en lugar de calcular coordenadas $x$ e $y$, calcula la mezcla de los componentes Rojo, Verde y Azul (RGB). Si el porcentaje de progreso es 0.5, ambas funciones nos entregan el "punto medio": una posición situada justo a la mitad del camino y un color morado, que es la mezcla equitativa de los dos colores originales.
 
 #### 3) ¿Cómo se dibuja una flecha usando drawArrow()?
-**Respuesta:** Para dibujar una flecha, la función **drawArrow()** utiliza transformaciones de coordenadas en lugar de cálculos manuales complejos. Primero, usa **translate()** para mover el punto de origen del dibujo a la base donde debe nacer la flecha, lo que simplifica todo el proceso posterior al establecer un nuevo "punto cero". Después, dibuja una línea simple que representa el cuerpo de la flecha hasta la punta del vector. Lo más ingenioso ocurre con **rotate()** y **vec.heading()**: el lienzo entero gira para alinearse con la dirección del vector, permitiendo que el triángulo de la punta se dibuje siempre con las mismas coordenadas locales, sin importar si la flecha apunta hacia arriba, abajo o en diagonal. Finalmente, se usa **pop()** para "limpiar" estas transformaciones y asegurar que el siguiente dibujo no aparezca rotado o desplazado por error.
+**Respuesta:** Para dibujar una flecha, la función **drawArrow()** utiliza transformaciones de coordenadas en lugar de cálculos manuales complejos. Primero, usa **translate()** para mover el punto de origen del dibujo a la base donde debe nacer la flecha, lo que simplifica todo el proceso posterior al establecer un nuevo "punto cero". Después, dibuja una línea simple que representa el cuerpo de la flecha hasta la punta del vector. Lo más curioso ocurre con **rotate()** y **vec.heading()**: el lienzo entero gira para alinearse con la dirección del vector, permitiendo que el triángulo de la punta se dibuje siempre con las mismas coordenadas locales, sin importar si la flecha apunta hacia arriba, abajo o en diagonal. Finalmente, se usa **pop()** para "limpiar" estas transformaciones y asegurar que el siguiente dibujo no aparezca rotado o desplazado por error.
 
 
 ## Bitácora de aplicación 
-
+### Actividad 09
 
 
 ## Bitácora de reflexión
+
 
