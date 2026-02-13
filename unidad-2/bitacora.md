@@ -283,8 +283,143 @@ class Star {
 
 
 ## Bitácora de reflexión
+### Actividad 10 ⋆.🔬⌬ ˚ 🦠⋆
+**Concepto:** Esta pieza llamada **Synthetic Affinities** presenta un ecosistema digital de partículas divididas en tres "especies" de colores. Cada una posee una carga de afinidad —atracción o repulsión— hacia las demás, dictada por una matriz de ADN digital. Este sistema no busca la animación predecible, sino la emergencia: la aparición espontánea de estructuras orgánicas, colonias y patrones de persecución que imitan la danza de microorganismos bajo un microscopio.  
 
+La estética de la obra está inspirada en los estudios de vida artificial de *Jeffrey Ventrella* y rinde homenaje a la visión de *Jared Tarbell*, donde el tiempo se vuelve un pincel. En lugar de limpiar el lienzo en cada cuadro, las partículas dejan rastros sutiles de su trayectoria, construyendo una red de filamentos que evocan tejidos biológicos
 
+La interacción humana es el motor que altera la física de este universo. El usuario actúa como una fuerza de la naturaleza: al presionar la barra espaciadora, se produce una mutación instantánea en las leyes de afinidad, forzando a las partículas a reconfigurar sus jerarquías sociales. 
+Al mover el cursor, el espectador manipula la temporalidad del sistema: el movimiento hacia la derecha ralentiza la existencia, permitiendo una contemplación analítica de las uniones químicas, mientras que el movimiento hacia la izquierda acelera el ritmo vital, provocando colisiones dinámicas.  
+
+Finalmente, el click representa un evento de convergencia masiva, un punto de gravedad absoluta que obliga a todas las especies a colapsar en un núcleo denso y vibrante. Al liberar la presión, el sistema se "desenreda" de nuevo, revelando cómo las fuerzas de amor y odio matemático vuelven a separar la materia en nuevas agrupaciones.  
+
+**Código:**
+```js
+let particles = [];
+let numParticles = 200;
+let matrix = [];
+let speedMultiplier = 1; // Factor de velocidad global
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(10, 15, 30);
+  randomizeRules();
+  for (let i = 0; i < numParticles; i++) {
+    particles.push(new Particle(random(width), random(height), i % 3));
+  }
+}
+
+function randomizeRules() {
+  for (let i = 0; i < 3; i++) {
+    matrix[i] = [];
+    for (let j = 0; j < 3; j++) {
+      let force = random(0.4, 1.2); // Fuerzas siempre notables
+      if (random() > 0.5) force *= -1; 
+      matrix[i][j] = force;
+    }
+  }
+}
+
+function draw() {
+  background(10, 15, 30, 30); 
+
+  // LÓGICA DE DIRECCIÓN DEL MOUSE
+  // Si la posición actual es mayor a la anterior, va a la derecha
+  if (mouseX > pmouseX) {
+    speedMultiplier = lerp(speedMultiplier, 0.4, 0.1); // Lento
+  } else if (mouseX < pmouseX) {
+    speedMultiplier = lerp(speedMultiplier, 2.5, 0.1); // Rápido
+  }
+
+  for (let p of particles) {
+    p.applySocialPhysics(particles);
+    p.interact(); 
+    p.update();
+    p.display();
+  }
+}
+
+function keyPressed() {
+  if (key === ' ') {
+    background(10, 15, 30); 
+    randomizeRules();
+  }
+}
+
+class Particle {
+  constructor(x, y, type) {
+    this.pos = createVector(x, y);
+    this.vel = createVector(random(-1, 1), random(-1, 1));
+    this.acc = createVector(0, 0);
+    this.type = type;
+    this.maxSpeed = 4;
+  }
+
+  applySocialPhysics(others) {
+    let steer = createVector(0, 0);
+    let count = 0;
+    for (let other of others) {
+      if (other !== this) {
+        let dx = other.pos.x - this.pos.x;
+        let dy = other.pos.y - this.pos.y;
+        let d2 = dx * dx + dy * dy;
+
+        if (d2 > 0 && d2 < 7000 && count < 20) {
+          let d = sqrt(d2);
+          let force = createVector(dx / d, dy / d);
+          
+          if (d < 12) { // Repulsión mínima para que no se peguen literal
+            force.mult(-1.5);
+          } else {
+            force.mult(matrix[this.type][other.type]);
+          }
+          steer.add(force);
+          count++;
+        }
+      }
+    }
+    this.acc.add(steer);
+  }
+
+  interact() {
+    if (mouseIsPressed) {
+      // CLICK: ATRACCIÓN MASIVA
+      let attraction = createVector(mouseX - this.pos.x, mouseY - this.pos.y);
+      attraction.setMag(2.5); // Fuerza de imán potente
+      this.acc.add(attraction);
+      this.vel.mult(0.85); // Frena la inercia para que se queden en el centro
+    }
+  }
+
+  update() {
+    this.vel.add(this.acc);
+    
+    // Aplicamos el multiplicador de velocidad según la dirección del mouse
+    let finalMaxSpeed = this.maxSpeed * speedMultiplier;
+    this.vel.limit(finalMaxSpeed);
+    
+    this.pos.add(this.vel);
+    this.vel.mult(0.94); 
+    this.acc.mult(0);
+    
+    if (this.pos.x > width) this.pos.x = 0;
+    if (this.pos.x < 0) this.pos.x = width;
+    if (this.pos.y > height) this.pos.y = 0;
+    if (this.pos.y < 0) this.pos.y = height;
+  }
+
+  display() {
+    let colors = [color(0, 255, 255), color(255, 50, 150), color(255, 255, 100)];
+    stroke(colors[this.type]);
+    strokeWeight(3);
+    point(this.pos.x, this.pos.y);
+  }
+}
+```
+
+**Enlace:** https://editor.p5js.org/Hannanah06/full/gB5_dqaWw  
+
+<img width="1435" height="860" alt="Captura de pantalla 2026-02-13 145310" src="https://github.com/user-attachments/assets/beeab94b-252a-4d73-a593-188f46eac7e7" />
 
 
 
