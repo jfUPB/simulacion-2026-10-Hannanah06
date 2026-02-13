@@ -118,11 +118,14 @@ Por otro lado, **lerpColor()** realiza exactamente la misma operación pero en e
 
 ## Bitácora de aplicación 
 ### Actividad 09 ⋆⭒˚.⋆🔭
-**Concepto: Stargazing** 
+**Concepto: Wishing Shower** es una pieza de arte generativo que transforma un fenómeno físico ゛una lluvia de meteoros ˎˊ˗ en una experiencia interactiva sobre la esperanza y la intención. La pieza no busca solo representar la caída de cuerpos celestes, sino invitar al espectador a participar en un cielo "vivo". Evoca esa sensación infantil de mirar al cielo y sentir que, entre miles de luces, hay una que brilla específicamente para nosotros.
+
+
 
 
 
 ## Bitácora de reflexión
+
 
 
 
