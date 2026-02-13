@@ -118,13 +118,21 @@ Por otro lado, **lerpColor()** realiza exactamente la misma operación pero en e
 
 ## Bitácora de aplicación 
 ### Actividad 09 ⋆⭒˚.⋆🔭
-**Concepto: Wishing Shower** es una pieza de arte generativo que transforma un fenómeno físico ゛una lluvia de meteoros ˎˊ˗ en una experiencia interactiva sobre la esperanza y la intención. La pieza no busca solo representar la caída de cuerpos celestes, sino invitar al espectador a participar en un cielo "vivo". Evoca esa sensación infantil de mirar al cielo y sentir que, entre miles de luces, hay una que brilla específicamente para nosotros.
+**Concepto: Wishing Shower** es una pieza de arte generativo que transforma un fenómeno físico ゛una lluvia de meteoros ˎˊ˗ en una experiencia interactiva sobre la esperanza y la intención. La pieza no busca solo representar la caída de cuerpos celestes, sino invitar al espectador a participar en un cielo "vivo". Evoca esa sensación infantil de mirar al cielo y sentir que, entre miles de luces, hay una que brilla específicamente para nosotros.  
+
+La base del movimiento es una aceleración constante por gravedad, aplicada como un vector inclinado hacia la esquina inferior derecha. Esto genera un flujo natural y rítmico, donde cada estrella aumenta su velocidad de forma progresiva desde que nace, simulando la caída libre de un meteoro en la atmósfera. 
+
+Para la interacción, utilicé aceleración tangencial manual vinculada a las teclas. Al presionar la derecha, aplico una fuerza a favor del movimiento actual que aumenta la magnitud de la velocidad, permitiendo que las estrellas alcancen un color rosa vibrante. Al presionar la izquierda, aplico una fuerza de oposición que reduce la velocidad gradualmente, activando un tono amarillo que evoca calma y resistencia.  
+
+Finalmente, implementé una aceleración de evento crítico para la función del deseo (tecla W). Al activarse, una estrella seleccionada recibe un impulso masivo que ignora las reglas de fricción normales. Esta aceleración extrema dispara la velocidad de la partícula hasta que abandona el lienzo, simbolizando visualmente un anhelo que cobra fuerza propia y trasciende el entorno común.
+
 
 
 
 
 
 ## Bitácora de reflexión
+
 
 
 
