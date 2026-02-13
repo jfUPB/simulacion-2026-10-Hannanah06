@@ -2,7 +2,7 @@
 
 ## Bitácora de proceso de aprendizaje
 ### Actividad 01
-El trabajo que más me gustó fue "Crab People" de **Raven Kwok**
+El trabajo que más me gustó fue "Crab People" de **Raven Kwok**. Lo que más me gusta de esta obra es cómo logra que esas formas geométricas se muevan con una fluidez que parece biológica. Me parece increíble como, con código, el movimiento de las "patas" imite el comportamiento de crustáceos.
 
 ### Actividad 02
 #### 1) ¿Cómo funciona la suma dos vectores en p5.js?
@@ -121,6 +121,7 @@ Por otro lado, **lerpColor()** realiza exactamente la misma operación pero en e
 
 
 ## Bitácora de reflexión
+
 
 
 
