@@ -32,9 +32,10 @@ Para que esta historia se sienta real, la aceleración no es fija, sino que nace
 
 ☁︎ **La pérdida:** La regla de ruptura es el final de la historia. Cuando la distancia entre la mano y la cometa supera un límite, el sistema deja de calcular la tensión y la cometa escapa. Es el momento donde la física nos dice que el control se ha perdido definitivamente.
 
-
+**Código:**
 
 ## Bitácora de reflexión
+
 
 
 
