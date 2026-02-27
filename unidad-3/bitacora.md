@@ -286,7 +286,12 @@ function drawInterface() {
 }
 ```
 
+**Enlace:** https://editor.p5js.org/Hannanah06/full/HpToWkY76  
+
+<img width="977" height="561" alt="image" src="https://github.com/user-attachments/assets/187ece5d-5bf9-4a3f-ba4b-0944dd48a58b" />
+
 ## Bitácora de reflexión
+
 
 
 
