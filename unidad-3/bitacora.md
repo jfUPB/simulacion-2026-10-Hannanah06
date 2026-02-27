@@ -18,13 +18,14 @@ En esta unidad sentí que el movimiento dejó de ser “porque sí” y empezó 
 Me gustó darme cuenta de que no estoy animando directamente el movimiento, sino diseñando condiciones para que ocurra. Eso me parece muy poderoso. También me deja pensando en hasta qué punto quiero que mis simulaciones sean físicas y cuándo romper esas reglas puede ser más interesante. Esta unidad me hizo sentir que estoy uniendo lo técnico con lo creativo, y eso me gusta mucho:
 
 ### Actividad 03
+**Concepto:** 
 
 
-
-## Bitácora de aplicación 
+## Bitácora de aplicación 🪁🍃🌤️༄.°
 
 
 
 ## Bitácora de reflexión
+
 
 
