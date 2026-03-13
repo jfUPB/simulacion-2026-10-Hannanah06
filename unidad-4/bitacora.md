@@ -361,7 +361,7 @@ function mousePressed() {
 
 ## Bitácora de reflexión
 ### Actividad 12
-#### Diagrama
+#### Diagrama:
 
 
 
