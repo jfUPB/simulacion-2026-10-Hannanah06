@@ -75,15 +75,20 @@ El círculo deja de describir un círculo grande y se queda pegado al origen (el
 
 ✿ **Ahora realiza esta modificación ¿Qué ocurre aquí? ¿Por qué?**  
 La simulación vuelve a funcionar perfectamente. El círculo describe de nuevo su trayectoria circular grande alrededor del centro, y la línea lo sigue correctamente, conectando el origen con el centro del círculo. La clave está en cómo estamos usando ahora la función *p5.Vector.fromAngle()*:  
-**-El segundo parámetro:** A diferencia del intento anterior, ahora le pasamos dos datos a la función: *fromAngle(theta, r)*.  
-**-Ángulo + Magnitud:** El primer valor (*theta*) le dice al vector hacia dónde apuntar, y el segundo valor (*r*) le dice qué tan largo debe ser.  
-**-Trigonometría automática:** Internamente, p5.js hace el trabajo de calcular $x = r \cdot \cos(\theta)$ y $y = r \cdot \sin(\theta)$ por nosotros.  
-**-Coherencia visual:** Al usar *v.x* y *v.y* tanto para la línea como para el círculo, garantizamos que ambos elementos estén perfectamente alineados en cada frame.
+- **El segundo parámetro:** A diferencia del intento anterior, ahora le pasamos dos datos a la función: *fromAngle(theta, r)*.  
+- **Ángulo + Magnitud:** El primer valor (*theta*) le dice al vector hacia dónde apuntar, y el segundo valor (*r*) le dice qué tan largo debe ser.  
+- **Trigonometría automática:** Internamente, p5.js hace el trabajo de calcular $x = r \cdot \cos(\theta)$ y $y = r \cdot \sin(\theta)$ por nosotros.  
+- **Coherencia visual:** Al usar *v.x* y *v.y* tanto para la línea como para el círculo, garantizamos que ambos elementos estén perfectamente alineados en cada frame.
 
 ### Actividad 06
 
 ### Actividad 07
-
+Para que la onda deje de ser una imagen fija y se mueva como una "ola", trasladé el código del *setup()* (que solo corre una vez) al *draw()* (que se ejecuta en bucle).  
+- **Limpieza:** Agregué *background(255)* al inicio del draw para borrar el rastro de los círculos anteriores.
+- **Nueva Variable *startAngle:*** Introduje esta variable para controlar el inicio de la fase en cada fotograma.
+- **Lógica de Animación:** En cada frame, igualo el ángulo de dibujo a *startAngle*.  
+-Al final de cada frame, incremento *startAngle* += 0.05.  
+-Esto hace que la onda comience en un punto ligeramente distinto cada vez, creando la ilusión de desplazamiento.
 
 ### Actividad 08
 
@@ -97,6 +102,7 @@ La simulación vuelve a funcionar perfectamente. El círculo describe de nuevo s
 
 
 ## Bitácora de reflexión
+
 
 
 
