@@ -2,6 +2,9 @@
 
 ## Bitácora de proceso de aprendizaje
 ### Actividad 01
+Lo que más me atrapó de “*The Awesome Machinery Of Nature: We are all connected*” fue cómo Memo Akten transforma reglas matemáticas en algo que se siente totalmente vivo.  
+**-Formas y Colores:** Me encantó cómo los patrones visuales crean una red donde todo parece estar conectado. No se siente como código rígido, sino como un sistema orgánico y fluido.  
+**-Sonido:** La sincronía entre el movimiento y el audio hace que la simulación deje de ser algo que solo "ves" para convertirse en una experiencia que "sientes".
 
 ### Actividad 02
 #### Análisis: Manejo de Ángulos
@@ -74,4 +77,5 @@ p5.js dibuja los rectángulos desde la esquina superior izquierda.
 
 
 ## Bitácora de reflexión
+
 
