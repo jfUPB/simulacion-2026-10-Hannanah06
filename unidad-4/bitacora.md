@@ -60,10 +60,30 @@ p5.js dibuja los rectángulos desde la esquina superior izquierda.
 ### Actividad 04
 
 ### Actividad 05
+#### Análisis: Coordenadas polares
+✿ **Observa de nuevo esta parte del código ¿Cuál es la relación entre r y theta con las posiciones x y y?**  
+Aprendí que las coordenadas polares son una forma distinta de ver el espacio: en lugar de "ancho y alto", usamos distancia ($r$) y dirección ($\theta$).  
+- $r$ (el radio) define qué tan lejos del centro está el círculo.  
+- $\theta$ (el ángulo) define en qué parte de la "vuelta" se encuentra.
+
+✿ **Modifica la función draw() ¿Qué ocurre? ¿Por qué?**
+El círculo deja de describir un círculo grande y se queda pegado al origen (el centro del lienzo). Casi no se percibe el movimiento, aunque el código sigue corriendo. La clave está en cómo funciona *p5.Vector.fromAngle(theta)*:  
+
+**-Vectores Unitarios:** La función *fromAngle()* crea un vector con una longitud (magnitud) de exactamente 1.  
+**-Falta el Radio ($r$):** En el código anterior, multiplicábamos el coseno y el seno por un radio. Aquí, al usar solo *v.x* y *v.y*, el círculo se está dibujando a solo 1 píxel de distancia del centro. Como el círculo mide 48 píxeles de ancho, parece que no se mueve porque el pequeño giro de 1 píxel ocurre "dentro" de su propio dibujo.  
+**-La línea se pierde:** Como la línea todavía usa las variables *x* e *y* (que ya no se están actualizando con el nuevo *theta*), la línea se queda quieta apuntando a un valor viejo o da error si esas variables no están definidas.
+
+✿ **Ahora realiza esta modificación ¿Qué ocurre aquí? ¿Por qué?**  
+La simulación vuelve a funcionar perfectamente. El círculo describe de nuevo su trayectoria circular grande alrededor del centro, y la línea lo sigue correctamente, conectando el origen con el centro del círculo. La clave está en cómo estamos usando ahora la función *p5.Vector.fromAngle()*:  
+**-El segundo parámetro:** A diferencia del intento anterior, ahora le pasamos dos datos a la función: *fromAngle(theta, r)*.  
+**-Ángulo + Magnitud:** El primer valor (*theta*) le dice al vector hacia dónde apuntar, y el segundo valor (*r*) le dice qué tan largo debe ser.  
+**-Trigonometría automática:** Internamente, p5.js hace el trabajo de calcular $x = r \cdot \cos(\theta)$ y $y = r \cdot \sin(\theta)$ por nosotros.  
+**-Coherencia visual:** Al usar *v.x* y *v.y* tanto para la línea como para el círculo, garantizamos que ambos elementos estén perfectamente alineados en cada frame.
 
 ### Actividad 06
 
 ### Actividad 07
+
 
 ### Actividad 08
 
@@ -77,5 +97,6 @@ p5.js dibuja los rectángulos desde la esquina superior izquierda.
 
 
 ## Bitácora de reflexión
+
 
 
