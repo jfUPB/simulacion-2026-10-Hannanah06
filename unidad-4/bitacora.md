@@ -83,14 +83,15 @@ La simulación vuelve a funcionar perfectamente. El círculo describe de nuevo s
 ### Actividad 06
 
 ### Actividad 07
+
+
+### Actividad 08
 Para que la onda deje de ser una imagen fija y se mueva como una "ola", trasladé el código del *setup()* (que solo corre una vez) al *draw()* (que se ejecuta en bucle).  
 - **Limpieza:** Agregué *background(255)* al inicio del draw para borrar el rastro de los círculos anteriores.
 - **Nueva Variable *startAngle:*** Introduje esta variable para controlar el inicio de la fase en cada fotograma.
 - **Lógica de Animación:** En cada frame, igualo el ángulo de dibujo a *startAngle*.  
 -Al final de cada frame, incremento *startAngle* += 0.05.  
 -Esto hace que la onda comience en un punto ligeramente distinto cada vez, creando la ilusión de desplazamiento.
-
-### Actividad 08
 
 ### Actividad 09
 
@@ -102,6 +103,7 @@ Para que la onda deje de ser una imagen fija y se mueva como una "ola", traslad�
 
 
 ## Bitácora de reflexión
+
 
 
 
