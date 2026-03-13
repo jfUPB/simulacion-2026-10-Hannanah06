@@ -114,13 +114,13 @@ La obra utiliza el micrófono como un sensor de energía vital. El usuario debe 
 **Código:**
 ```js
 let mic;
-let started = false;
-let instructionsAlpha = 255; // Para el desvanecimiento del mensaje inicial
+let started = false; //Controla si la simulación ya inició (tras el clic)
+let instructionsAlpha = 255; //Para el desvanecimiento del mensaje inicial
 
 // Física
-let angleMóvil = 0;
-let angleVel = 0;
-let friction = 0.985;
+let angleMóvil = 0; //Posición angular actual
+let angleVel = 0; //Velocidad de rotación
+let friction = 0.985; //Resistencia que detiene el móvil poco a poco
 let waveAngle = 0;
 
 // Sonido (CAJA DE MÚSICA CRISTALINA)
@@ -133,11 +133,11 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   
   env = new p5.Envelope();
-  env.setADSR(0.02, 0.1, 0.1, 0.8); 
-  env.setRange(0.3, 0); 
+  env.setADSR(0.02, 0.1, 0.1, 0.8); //Para que se más elongaod el sonido
+  env.setRange(0.3, 0); //Volumen máximo y mínimo
   
-  osc = new p5.Oscillator('sine');
-  osc.amp(env);
+  osc = new p5.Oscillator('sine'); //Genera una onda pura (suave)
+  osc.amp(env); //Conecta el oscilador a la envolvente
 }
 
 function draw() {
@@ -150,10 +150,11 @@ function draw() {
 
   // 1. CAPTURA DE ENERGÍA
   let vol = mic.getLevel();
+  //Convertimos el volumen en una fuerza de giro (torque)
   let torque = map(vol, 0, 0.5, 0, 0.15); 
-  angleVel += torque;
-  angleVel *= friction;
-  angleMóvil += angleVel;
+  angleVel += torque; //La fuerza acelera la rotación
+  angleVel *= friction; //Aplicamos la fricción para que no gire por siempre
+  angleMóvil += angleVel; //Actualizamos la posición según la velocidad
 
   // 2. LÓGICA DE DESTELLOS Y SONIDO
   if (angleVel > 0.002) {
@@ -161,7 +162,7 @@ function draw() {
       glimmers.push(new Glimmer(random(width), random(height), false));
     }
     if (random(1) < angleVel * 0.7) {
-      playChime();
+      playChime(); //Elige nota al azar y la toca
       for(let i=0; i<3; i++) {
         glimmers.push(new Glimmer(random(width), random(height), true));
       }
@@ -258,8 +259,9 @@ function drawImprovedCreature(x, y, i, speed) {
     stroke(100, 230, 255, b/1.8);
     strokeWeight(1.5);
     noFill();
-    let tailWave = sin(frameCount * 0.1 + i) * (5 + speed * 30);
-    let tailLag = speed * 80;
+    let tailWave = sin(frameCount * 0.1 + i) * (5 + speed * 30); //Oscilación de la cola
+    let tailLag = speed * 80; //La cola se retrasa según la velocidad (Inercia)
+    // Los puntos de control se mueven con tailWave para crear el efecto flexible
     bezier(0, 16, tailWave, 30, -tailLag + tailWave, 40, tailWave * 0.5, 55);
   } 
   else if (i % 3 == 1) { // Tiburón Ballena
@@ -358,7 +360,8 @@ function mousePressed() {
 
 
 ## Bitácora de reflexión
-
+### Actividad 12
+#### Diagrama
 
 
 
