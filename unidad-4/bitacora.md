@@ -53,12 +53,6 @@ p5.js dibuja los rectángulos desde la esquina superior izquierda.
 
 **Resultado:** Como el papel ya está en el lugar correcto y con la inclinación de la velocidad, al dibujar el *rect(0, 0)*, este queda automáticamente apuntando hacia donde se está moviendo.
 
-
-
-### Actividad 03
-
-### Actividad 04
-
 ### Actividad 05
 #### Análisis: Coordenadas polares
 ✿ **Observa de nuevo esta parte del código ¿Cuál es la relación entre r y theta con las posiciones x y y?**  
@@ -81,6 +75,15 @@ La simulación vuelve a funcionar perfectamente. El círculo describe de nuevo s
 - **Coherencia visual:** Al usar *v.x* y *v.y* tanto para la línea como para el círculo, garantizamos que ambos elementos estén perfectamente alineados en cada frame.
 
 ### Actividad 06
+#### Reflexiones sobre la Sinusoide
+- **Matemática en Movimiento:** Aprendí que el seno no es solo un gráfico en papel, sino un motor de animación. Gracias a su oscilación entre -1 y 1, permite crear ciclos naturales (latidos, ondas, vaivenes).
+
+- **El Poder de los Parámetros:** -Amplitud: Define el tamaño del movimiento.
+-Frecuencia/Fase: Controlan el ritmo. Entendí que desplazar la fase en el tiempo es lo que crea la ilusión de que una onda se mueve.
+
+- **De lo Estático a lo Vivo:** La clave fue pasar del *setup()* al *draw()*. Al vincular el ángulo con una variable que aumenta siempre (*startAngle* o *frameCount*), la estructura matemática se convierte en un comportamiento orgánico.
+
+- **Uso en la Naturaleza:** Entender la sinusoide es fundamental para mis actividades anteriores (hadas y cometas), ya que casi todo lo natural (viento, vuelo, agua) sigue patrones oscilatorios.
 
 ### Actividad 07
 El objetivo de esta actividad era transformar un sistema de oscilación simple en una estructura orgánica que responda a estímulos externos (fuerzas) y presente variaciones naturales (ruido). Lo hice de la siguiente manera:  
@@ -98,16 +101,12 @@ Para que la onda deje de ser una imagen fija y se mueva como una "ola", traslad�
 -Al final de cada frame, incremento *startAngle* += 0.05.  
 -Esto hace que la onda comience en un punto ligeramente distinto cada vez, creando la ilusión de desplazamiento.
 
-### Actividad 09
-
-### Actividad 10
-
-
 ## Bitácora de aplicación 
 ### Actividad 11
 
 
 ## Bitácora de reflexión
+
 
 
 
