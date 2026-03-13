@@ -83,7 +83,12 @@ La simulación vuelve a funcionar perfectamente. El círculo describe de nuevo s
 ### Actividad 06
 
 ### Actividad 07
+El objetivo de esta actividad era transformar un sistema de oscilación simple en una estructura orgánica que responda a estímulos externos (fuerzas) y presente variaciones naturales (ruido). Lo hice de la siguiente manera:  
+- **Matemática (Sinusoide Radial):** Utilicé las funciones *sin()* y *cos()* para convertir la oscilación lineal en un movimiento circular. Al usar *translate(width/2, height/2)*, todos los puntos nacen de un centro común, creando una estructura de "péndulos radiales".
 
+- **Unidad 1 - Aleatoriedad (Perlin Noise):** Sustituí el valor estático del largo de los brazos por *noise()*. Esto permite que la amplitud de cada brazo cambie de forma fluida y orgánica, haciendo que la figura "respire" en lugar de ser rígida.
+
+- **Unidad 3 - Fuerzas (Interacción):** Implementé el *mouseX* como una fuerza motriz. Al mover el ratón, el usuario altera la velocidad angular del sistema, simulando una fuerza externa que acelera o frena la rotación de los péndulos.
 
 ### Actividad 08
 Para que la onda deje de ser una imagen fija y se mueva como una "ola", trasladé el código del *setup()* (que solo corre una vez) al *draw()* (que se ejecuta en bucle).  
@@ -103,6 +108,7 @@ Para que la onda deje de ser una imagen fija y se mueva como una "ola", traslad�
 
 
 ## Bitácora de reflexión
+
 
 
 
