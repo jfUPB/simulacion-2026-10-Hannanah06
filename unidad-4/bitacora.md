@@ -102,8 +102,14 @@ Para que la onda deje de ser una imagen fija y se mueva como una "ola", traslad�
 -Esto hace que la onda comience en un punto ligeramente distinto cada vez, creando la ilusión de desplazamiento.
 
 ## Bitácora de aplicación 
-### Actividad 11
-Esta obra no busca narrar una historia lineal, sino construir una atmósfera de introspección y calma. La narrativa se basa en la metáfora del "Móvil de Cuna Abisal": un objeto diseñado para serenar la mente, trasladando la simplicidad de un móvil infantil a las profundidades del océano. Las reglas del sistema (fricción, inercia y brillo) están diseñadas para que cada interacción se sienta como un retorno a ese estado de asombro primitivo, donde el movimiento suave y el sonido cristalino eran suficientes para generar paz.
+### Actividad 11 𓏲๋࣭࣪˖🪼.ᐟ
+**Concepto: Deep Sea Breathing** es una obra bastante personal. Busco construir una atmósfera de introspección y calma, basándome en el lugar donde nací y lo que me gusta. La narrativa se basa en un "Móvil de Cuna Abisal": un objeto diseñado para serenar la mente, trasladando la simplicidad de un móvil infantil a las profundidades del océano. Las reglas del sistema (fricción, inercia y brillo) están diseñadas para que cada interacción se sienta como un retorno a ese estado de asombro primitivo, donde el movimiento suave y el sonido cristalino eran suficientes para generar paz.  
+
+Se aplicó Movimiento Armónico Simple para el nado vertical de las criaturas y la ondulación de los tentáculos y colas. El uso de funciones trigonométricas ($\sin$ y $\cos$) permite que el sistema no sea rígido, sino que tenga un ritmo orgánico que imita la respiración y el vaivén del agua. De las unidades anteriores apliqué Física (Fuerzas y Vectores) y Sistemas de Partículas  
+- Física: Implementé conceptos de torque y fricción angular para que el giro del móvil responda a la fuerza del aire.
+- Sistemas de Partículas: Los "destellos de alegría" y las burbujas funcionan bajo reglas de aceleración y desvanecimiento (fade-out), creando una respuesta visual efímera que premia la interacción del usuario.
+
+La obra utiliza el micrófono como un sensor de energía vital. El usuario debe respirar profundo y exhalar hacia el sistema; esta entrada de audio se traduce en una fuerza de rotación que rompe la inercia del móvil.
 
 **Código:**
 ```js
@@ -347,6 +353,7 @@ function mousePressed() {
 }
 ```
 ## Bitácora de reflexión
+
 
 
 
