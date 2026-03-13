@@ -103,9 +103,251 @@ Para que la onda deje de ser una imagen fija y se mueva como una "ola", traslad�
 
 ## Bitácora de aplicación 
 ### Actividad 11
+Esta obra no busca narrar una historia lineal, sino construir una atmósfera de introspección y calma. La narrativa se basa en la metáfora del "Móvil de Cuna Abisal": un objeto diseñado para serenar la mente, trasladando la simplicidad de un móvil infantil a las profundidades del océano. Las reglas del sistema (fricción, inercia y brillo) están diseñadas para que cada interacción se sienta como un retorno a ese estado de asombro primitivo, donde el movimiento suave y el sonido cristalino eran suficientes para generar paz.
 
+**Código:**
+```js
+let mic;
+let started = false;
+let instructionsAlpha = 255; // Para el desvanecimiento del mensaje inicial
 
+// Física
+let angleMóvil = 0;
+let angleVel = 0;
+let friction = 0.985;
+let waveAngle = 0;
+
+// Sonido (CAJA DE MÚSICA CRISTALINA)
+let osc, env;
+let notas = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50]; //escala c4 a c5, registro medio 
+let glimmers = []; 
+let bubbles = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  
+  env = new p5.Envelope();
+  env.setADSR(0.02, 0.1, 0.1, 0.8); 
+  env.setRange(0.3, 0); 
+  
+  osc = new p5.Oscillator('sine');
+  osc.amp(env);
+}
+
+function draw() {
+  background(5, 10, 25);
+
+  if (!started) {
+    drawStartScreen();
+    return;
+  }
+
+  // 1. CAPTURA DE ENERGÍA
+  let vol = mic.getLevel();
+  let torque = map(vol, 0, 0.5, 0, 0.15); 
+  angleVel += torque;
+  angleVel *= friction;
+  angleMóvil += angleVel;
+
+  // 2. LÓGICA DE DESTELLOS Y SONIDO
+  if (angleVel > 0.002) {
+    if (random(1) < angleVel * 1.5) { 
+      glimmers.push(new Glimmer(random(width), random(height), false));
+    }
+    if (random(1) < angleVel * 0.7) {
+      playChime();
+      for(let i=0; i<3; i++) {
+        glimmers.push(new Glimmer(random(width), random(height), true));
+      }
+    }
+    if (frameCount % 10 == 0) bubbles.push(new Bubble(width/2, height * 0.85));
+  }
+
+  // Partículas
+  actualizarParticulas();
+
+  // 3. MÓVIL Y HÉLICE
+  dibujarEscena();
+
+  // 4. MENSAJE DE RESPIRACIÓN (Aparece tras el clic y se desvanece)
+  if (instructionsAlpha > 0) {
+    drawInstructions();
+    instructionsAlpha -= 1.5; // Velocidad del desvanecimiento
+  }
+
+  waveAngle += 0.05;
+}
+
+function drawInstructions() {
+  push();
+  textAlign(CENTER, CENTER);
+  fill(200, 240, 255, instructionsAlpha);
+  textSize(20);
+  textFont('Georgia'); // Un estilo más elegante/clásico
+  text("respira profundo y exhala...", width / 2, height / 1.4);
+  pop();
+}
+
+// --- FUNCIONES DE SOPORTE (Limpieza de código) ---
+
+function actualizarParticulas() {
+  for (let i = glimmers.length - 1; i >= 0; i--) {
+    glimmers[i].update();
+    glimmers[i].show();
+    if (glimmers[i].finished()) glimmers.splice(i, 1);
+  }
+  for (let i = bubbles.length - 1; i >= 0; i--) {
+    bubbles[i].update(angleVel);
+    bubbles[i].show();
+    if (bubbles[i].finished()) bubbles.splice(i, 1);
+  }
+}
+
+function dibujarEscena() {
+  push();
+  translate(width / 2, height / 5);
+  drawCribCarousel(angleMóvil, angleVel);
+  pop();
+
+  push();
+  translate(width / 2, height * 0.85);
+  drawGenerator(angleMóvil);
+  pop();
+}
+
+function drawCribCarousel(angle, speed) {
+  noFill();
+  stroke(100, 220, 255, 80);
+  strokeWeight(2);
+  ellipse(0, 0, 320, 50);
+  let numCriaturas = 5;
+  let radio = 140;
+  for (let i = 0; i < numCriaturas; i++) {
+    let theta = angle + (TWO_PI / numCriaturas) * i;
+    let xBase = radio * cos(theta);
+    let yBase = (radio * 0.15) * sin(theta);
+    let oscY = sin(waveAngle + i) * (20 + speed * 450);
+    let h = 230 + oscY;
+    let lag = speed * 180;
+    let xCtrl = xBase - (lag * cos(theta + HALF_PI));
+    stroke(200, 240, 255, 60);
+    strokeWeight(1.2);
+    bezier(xBase, yBase, xCtrl, yBase + h*0.5, xBase - lag, yBase + h*0.8, xBase, yBase + h);
+    drawImprovedCreature(xBase, yBase + h, i, speed);
+  }
+}
+
+function drawImprovedCreature(x, y, i, speed) {
+  push();
+  translate(x, y);
+  let b = map(speed, 0, 0.1, 130, 255);
+  noStroke();
+  if (i % 3 == 0) { // Mantarraya
+    fill(100, 230, 255, b);
+    beginShape();
+    curveVertex(-35, 0); curveVertex(-35, 0);
+    curveVertex(0, -12); curveVertex(35, 0);
+    curveVertex(0, 16); curveVertex(-35, 0); curveVertex(-35, 0);
+    endShape();
+    stroke(100, 230, 255, b/1.8);
+    strokeWeight(1.5);
+    noFill();
+    let tailWave = sin(frameCount * 0.1 + i) * (5 + speed * 30);
+    let tailLag = speed * 80;
+    bezier(0, 16, tailWave, 30, -tailLag + tailWave, 40, tailWave * 0.5, 55);
+  } 
+  else if (i % 3 == 1) { // Tiburón Ballena
+    fill(70, 130, 240, b);
+    ellipse(0, 0, 55, 25);
+    triangle(-25, 0, -40, -12, -40, 12);
+    fill(255, b-50);
+    for(let m=0; m<7; m++) circle(-12 + m*6, -6 + m%2*14, 2);
+  } 
+  else { // Medusa
+    fill(240, 130, 255, b);
+    arc(0, 0, 40, 35, PI, TWO_PI);
+    stroke(240, 130, 255, b/2.5);
+    for(let j=-12; j<=12; j+=6) {
+      let ty = 22 + sin(frameCount * 0.1 + j) * 7;
+      line(j, 0, j + sin(frameCount * 0.05) * 4, ty);
+    }
+  }
+  pop();
+}
+
+function drawGenerator(angle) {
+  rotate(angle * 5);
+  for (let i = 0; i < 4; i++) {
+    rotate(HALF_PI);
+    fill(0, 255, 255, 100);
+    stroke(255, 180);
+    bezier(0, 0, 20, -30, 55, -30, 55, 0);
+    bezier(55, 0, 55, 30, 20, 30, 0, 0);
+  }
+  fill(255); circle(0,0, 15);
+}
+
+function playChime() {
+  osc.freq(random(notas));
+  env.play();
+}
+
+class Glimmer {
+  constructor(x, y, isJoyful) {
+    this.x = x; this.y = y;
+    this.alpha = 255;
+    this.joyful = isJoyful;
+    this.size = isJoyful ? random(6, 12) : random(1, 4);
+    let colors = [color(180, 255, 255), color(255), color(220, 180, 255)];
+    this.c = random(colors);
+  }
+  update() { this.alpha -= this.joyful ? 5 : 10; }
+  show() {
+    push();
+    if (this.joyful) { drawingContext.shadowBlur = 12; drawingContext.shadowColor = this.c; }
+    fill(red(this.c), green(this.c), blue(this.c), this.alpha);
+    noStroke(); circle(this.x, this.y, this.size);
+    pop();
+  }
+  finished() { return this.alpha < 0; }
+}
+
+class Bubble {
+  constructor(x, y) {
+    this.x = x + random(-70, 70);
+    this.y = y;
+    this.alpha = 180;
+  }
+  update(s) { this.y -= (1.5 + s*12); this.alpha -= 3; }
+  show() {
+    stroke(255, this.alpha); noFill();
+    circle(this.x, this.y, random(2, 8));
+  }
+  finished() { return this.alpha < 0; }
+}
+
+function drawStartScreen() {
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textSize(24);
+  text("DEEP SEA BREATHING", width / 2, height / 2 - 20);
+  textSize(14);
+  fill(100, 200, 255);
+  text("HAZ CLIC PARA INICIAR", width / 2, height / 2 + 25);
+}
+
+function mousePressed() {
+  if (!started) {
+    userStartAudio(); 
+    mic = new p5.AudioIn();
+    mic.start();
+    osc.start();
+    started = true;
+  }
+}
+```
 ## Bitácora de reflexión
+
 
 
 
