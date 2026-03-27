@@ -125,6 +125,7 @@ Se está modelando la Ley de la Inversa del Cuadrado (similar a la fuerza eléct
 La clase *Particle* no cambió. Esto demuestra una separación total entre el objeto y su entorno. La partícula es un receptor pasivo: ella solo sabe cómo "recibir" una fuerza y sumarla a su aceleración, pero no necesita saber de dónde viene esa fuerza (si es gravedad, viento o un repeller). Esto permite añadir cientos de fuerzas externas sin tener que reescribir el código de la partícula cada vez.
 
 ## Bitácora de aplicación 
+### Actividad 05 
 
 
 ## Bitácora de reflexión
