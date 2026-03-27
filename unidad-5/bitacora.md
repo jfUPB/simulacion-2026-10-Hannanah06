@@ -133,11 +133,7 @@ Representaré el ciclo del que habla Mufasa en la película, en el que un ser al
 **2. Bocetos:**
 <img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/babbce4e-0b1c-4d9b-8fb7-3f135e61b788" />
 <img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/44df68ef-76b1-47a6-9bd4-435aadacc6f9" />
-<img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/3e7a85c6-7109-436a-afa1-6bdc411775d0" />
-
-
-**3. Mapa de decisiones**
-
+<img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/3e7a85c6-7109-436a-afa1-6bdc411775d0" />  
 
 **Código:**  
 **-Sketch**
@@ -221,3 +217,43 @@ function windowResized() {
 <img width="790" height="654" alt="image" src="https://github.com/user-attachments/assets/b311faa4-5622-46fb-9b2b-ed7d7d520fca" />
 
 ## Bitácora de reflexión
+### Actividad 06
+**Parte 1--Principios fundamentales:** Describe con tus propias palabras cada uno de estos 10 principios.  
+
+**1. Una partícula es una entidad con estado.**  
+No es solo un punto en la pantalla; es un objeto que "sabe" cosas de sí mismo. Su estado está definido por variables (propiedades) como su posición, velocidad, aceleración y, muy importante, su "vida" o transparencia (alpha).
+
+**2. Una partícula tiene ciclo de vida.**  
+A diferencia de un objeto permanente, la partícula nace, envejece y "muere". Se usa una variable (usualmente *lifespan*) que disminuye en cada fotograma. Cuando llega a cero, la partícula debe ser eliminada para no consumir memoria innecesariamente.
+
+**3. Un sistema de partículas gestiona colecciones dinámicas de elementos.**  
+Un sistema de partículas no usa una lista estática, sino una dinámica (como un *ArrayList* o un *Array* al que le haces *push* y *splice*). El sistema debe ser capaz de crecer cuando nacen partículas y encogerse cuando mueren, sin detener la ejecución.
+
+**4. La creación y eliminación de partículas no es un detalle técnico menor, sino parte central del modelo.**  
+No es un proceso de "limpieza" en segundo plano; es el motor del efecto visual. La tasa de nacimiento (cuántas se crean por segundo) y el criterio de muerte definen si el sistema parece humo, fuego o una explosión. Si no se eliminan bien, el programa se vuelve lento (memory leak).
+
+**5. Debe haber separación entre la lógica de una partícula individual y la lógica del sistema/emisor.**  
+Es el principio de responsabilidad única:
+
+✦ **Partícula:** Sabe cómo moverse y dibujarse a sí misma.
+
+✦ **Sistema/Emisor:** Sabe dónde deben nacer y cuántas debe haber en total.
+
+**6. Un emisor o particle system es una abstracción importante.**  
+El emisor es el "punto de origen". Al tratar el sistema como un objeto independiente, se puede mover la "fuente" de las partículas por la pantalla (como una manguera) sin tener que recalcular la lógica individual de cada partícula.
+
+**7. Pueden existir sistemas de sistemas.**  
+Es un concepto recursivo (visto en el Example 4.4). Se puede tener una lista que, en lugar de partículas, contenga otros sistemas de partículas. Por ejemplo, para un fuego artificial: un sistema principal lanza "bombas" y cada bomba es, a su vez, un sistema que explota en muchas partículas.
+
+**8. Puede haber heterogeneidad usando herencia y polimorfismo.**  
+No todas las partículas tienen que ser iguales. Gracias a la herencia (como en el Example 4.5), se puede tener una clase base *Particle* y sub-clases como *Confetti* o *Spark*. El sistema las trata a todas como "partículas", pero cada una se comporta o se ve distinto.
+
+**9. Las partículas pueden responder a fuerzas globales y locales.**  
+Las partículas son entes físicos que reaccionan a entornos:
+
+✦ **Globales:** Gravedad o viento que afecta a todas por igual (Example 4.6).
+
+✦ **Locales:** Un "repulsor" (como un imán) que solo afecta a las partículas que pasan cerca de él (Example 4.7).
+
+**10. La representación visual puede variar sin cambiar el principio algorítmico de fondo.**  
+El cálculo matemático (vectores, aceleración, Euler integration) es independiente de lo que se ve. El algoritmo de movimiento puede ser el mismo, pero se puede dibujar una partícula como un círculo, un cuadrado, una textura de humo o incluso un rastro de luz sin tocar la lógica física.
