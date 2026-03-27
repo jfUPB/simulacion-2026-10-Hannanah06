@@ -125,8 +125,22 @@ Se está modelando la Ley de la Inversa del Cuadrado (similar a la fuerza eléct
 La clase *Particle* no cambió. Esto demuestra una separación total entre el objeto y su entorno. La partícula es un receptor pasivo: ella solo sabe cómo "recibir" una fuerza y sumarla a su aceleración, pero no necesita saber de dónde viene esa fuerza (si es gravedad, viento o un repeller). Esto permite añadir cientos de fuerzas externas sin tener que reescribir el código de la partícula cada vez.
 
 ## Bitácora de aplicación 
-### Actividad 05
-**Concepto:**
+### Actividad 05 𓇢𓆸🐐⋆.🌱ೃ࿔🦁*:･
+**1. Concepto:** Al leer que la entrega era sobre el ciclo de la vida, lo primero que vino a mi mente fue la película "El rey león", de Disney. En una escena en particular, Mufasa le muestra a Simba el reino y comienza a hablarle sobre lo que es ser rey, diciéndole que "Todos estamos conectados en el ciclo de la vida", haciendo referencia a que todos somos necesarios en el ecosistema para seguir viviendo y debemos respetar ese balance natural.
+
+Representaré el ciclo del que habla Mufasa en la película, en el que un ser alimenta la tierra al morir para que otros animales se alimenten con sus nutrientes. Lo escogí porque esa idea de que "todos cumplimos un papel" me hace sentir valiosa y quiero que los demás también lo sientan.
+
+**2. Bocetos:**
+<img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/babbce4e-0b1c-4d9b-8fb7-3f135e61b788" />
+<img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/44df68ef-76b1-47a6-9bd4-435aadacc6f9" />
+<img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/3e7a85c6-7109-436a-afa1-6bdc411775d0" />
+
+
+**3. Mapa de decisiones**
+
+
+**4. Enlace:** https://editor.p5js.org/Hannanah06/full/Dq2axlnea
+
 
 
 ## Bitácora de reflexión
