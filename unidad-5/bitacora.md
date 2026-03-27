@@ -139,7 +139,10 @@ Representaré el ciclo del que habla Mufasa en la película, en el que un ser al
 **3. Mapa de decisiones**
 
 
-**4. Enlace:** https://editor.p5js.org/Hannanah06/full/Dq2axlnea
+**Código:**  
+**-Sketch**
+
+**Enlace:** https://editor.p5js.org/Hannanah06/full/Dq2axlnea
 
 
 
