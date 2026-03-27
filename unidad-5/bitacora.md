@@ -128,7 +128,7 @@ La clase *Particle* no cambió. Esto demuestra una separación total entre el ob
 ### Actividad 05 𓇢𓆸🐐⋆.🌱ೃ࿔🦁*:･
 **1. Concepto:** Al leer que la entrega era sobre el ciclo de la vida, lo primero que vino a mi mente fue la película "El rey león", de Disney. En una escena en particular, Mufasa le muestra a Simba el reino y comienza a hablarle sobre lo que es ser rey, diciéndole que "Todos estamos conectados en el ciclo de la vida", haciendo referencia a que todos somos necesarios en el ecosistema para seguir viviendo y debemos respetar ese balance natural.
 
-Representaré el ciclo del que habla Mufasa en la película, en el que un ser alimenta la tierra al morir para que otros animales se alimenten con sus nutrientes. Lo escogí porque esa idea de que "todos cumplimos un papel" me hace sentir valiosa y quiero que los demás también lo sientan.
+Representaré el ciclo del que habla Mufasa en la película, en el que un ser alimenta la tierra al morir (el león) para que otros animales se alimenten con sus nutrientes (antílopes) y así estos también puedan servir de alimento (para los leones nuevamente). Lo escogí porque esa idea de que "todos cumplimos un papel" me hace sentir valiosa y quiero que los demás también lo sientan.
 
 **2. Bocetos:**
 <img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/babbce4e-0b1c-4d9b-8fb7-3f135e61b788" />
@@ -141,9 +141,83 @@ Representaré el ciclo del que habla Mufasa en la película, en el que un ser al
 
 **Código:**  
 **-Sketch**
+```js
+let manager;
+let iniciado = false;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  textFont('Georgia');
+  manager = new SceneManager();
+}
+
+function draw() {
+  if (!iniciado) {
+    pantallaInicio();
+    return;
+  }
+  manager.update();
+  manager.draw();
+}
+
+// ── Pantalla de inicio ────────────────────────────────────
+
+function pantallaInicio() {
+  background(8, 12, 8);
+
+  // Título
+  fill(255); noStroke();
+  textAlign(CENTER, CENTER);
+  textSize(32); textStyle(BOLD);
+  text('El Ciclo de la Vida', width/2, height/2 - 70);
+
+  // Botón
+  let bx = width/2 - 85, by = height/2 + 44, bw = 170, bh = 44;
+  let hover = mouseX > bx && mouseX < bx+bw && mouseY > by && mouseY < by+bh;
+  noStroke();
+  fill(hover ? color(58,120,58) : color(42,96,42));
+  rect(bx, by, bw, bh, 4);
+  fill(hover ? 255 : color(180,240,180));
+  textSize(15); textStyle(NORMAL);
+  text('Comenzar', width/2, by + bh/2 + 1);
+}
+
+// ── Eventos de mouse ──────────────────────────────────────
+
+function mousePressed() {
+  if (!iniciado) {
+    let bx = width/2 - 85, by = height/2 + 44, bw = 170, bh = 44;
+    if (mouseX > bx && mouseX < bx+bw && mouseY > by && mouseY < by+bh) {
+      iniciado = true;
+      manager.iniciarEscena1();
+    }
+    return;
+  }
+  manager.mousePressed(mouseX, mouseY);
+}
+
+function mouseDragged() {
+  if (iniciado) manager.mouseDragged(mouseX, mouseY);
+}
+
+function mouseReleased() {
+  if (iniciado) manager.mouseReleased();
+}
+
+// ── Responsive ────────────────────────────────────────────
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+```
+
+**Resto de códigos:** https://editor.p5js.org/Hannanah06/sketches/Dq2axlnea
 
 **Enlace:** https://editor.p5js.org/Hannanah06/full/Dq2axlnea
 
 
+<img width="1224" height="709" alt="Captura de pantalla 2026-03-27 032110" src="https://github.com/user-attachments/assets/3f985341-82ec-4fa7-8b78-23fcc2ebd4ab" />
+<img width="1072" height="673" alt="Captura de pantalla 2026-03-27 032130" src="https://github.com/user-attachments/assets/30ab0a52-e7c7-4333-b37d-5f222f386aea" />
+<img width="790" height="654" alt="image" src="https://github.com/user-attachments/assets/b311faa4-5622-46fb-9b2b-ed7d7d520fca" />
 
 ## Bitácora de reflexión
