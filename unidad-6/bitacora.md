@@ -163,5 +163,285 @@ La relación es Directa y Paramétrica:
 ✦ **Amplitud (Volumen):** Determina el nivel de zoom y el grosor de las líneas, creando una sinestesia donde el espectador "ve" la presión sonora de la producción de ARTMS.  
 
 #### Código:
+**Index:**
+```js
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ICARUS — The Solar Rebirth</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/addons/p5.sound.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Space+Mono&display=swap');
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Space Mono', monospace; }
+        #ui { position: fixed; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 100; background: #000; transition: 1s; }
+        #ui.hidden { opacity: 0; pointer-events: none; }
+        .title { font-family: 'Cinzel', serif; color: white; font-size: 2.5rem; letter-spacing: 12px; text-shadow: 0 0 15px #ffcc00; text-align: center; margin-bottom: 40px; text-transform: uppercase; }
+        #playBtn { padding: 15px 40px; background: none; border: 1px solid rgba(255,204,0,0.5); color: #ffcc00; cursor: pointer; letter-spacing: 3px; transition: 0.3s; text-transform: uppercase; font-weight: bold; }
+        #playBtn:hover { background: #ffcc00; color: #000; border-color: #ffcc00; box-shadow: 0 0 20px #ff9900; }
+    </style>
+</head>
+<body>
+
+<div id="ui">
+    <h1 class="title">ICARUS</h1>
+    <input type="file" id="fileInput" accept="audio/*" style="display:none">
+    <button id="playBtn">SUBIR AUDIO Y RENACER</button>
+</div>
+
+<script>
+let song, fft, amp;
+let particles = [];
+let noiseGfx;
+let tOffset = 0;
+let smoothZoom = 1.0;
+
+// Estados de interacción
+let modoFuego = true;
+
+// Colores
+let colSunCore, colSunMid, colSunOut, colRebirth;
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    fft = new p5.FFT(0.85, 512);
+    amp = new p5.Amplitude();
+    
+    actualizarPaleta();
+
+    for (let i = 0; i < 1000; i++) {
+        particles.push(new Particle());
+    }
+
+    noiseGfx = createGraphics(width, height);
+    noiseGfx.loadPixels();
+    for (let i = 0; i < noiseGfx.pixels.length; i += 4) {
+        let n = random(15);
+        noiseGfx.pixels[i] = noiseGfx.pixels[i+1] = noiseGfx.pixels[i+2] = 255;
+        noiseGfx.pixels[i+3] = n;
+    }
+    noiseGfx.updatePixels();
+}
+
+function actualizarPaleta() {
+    colorMode(HSB, 360, 100, 100, 100);
+    if (modoFuego) {
+        colSunCore = color(50, 20, 100, 80);  
+        colSunMid = color(40, 90, 100, 50);   
+        colSunOut = color(15, 100, 100, 20);  
+        colRebirth = color(45, 100, 100, 100); 
+    } else {
+        colSunCore = color(190, 30, 100, 80); // Cyan pálido
+        colSunMid = color(210, 80, 100, 50);  // Azul eléctrico
+        colSunOut = color(260, 90, 80, 20);   // Violeta profundo
+        colRebirth = color(180, 100, 100, 100); // Turquesa neón
+    }
+    colorMode(RGB, 255, 255, 255, 255);
+}
+
+function mousePressed() {
+    modoFuego = !modoFuego;
+    actualizarPaleta();
+}
+
+function draw() {
+    if (!song || !song.isPlaying()) {
+        background(0);
+        return;
+    }
+
+    fft.analyze();
+    let bass = fft.getEnergy("bass") / 255;
+    let mid = fft.getEnergy("mid") / 255;
+    let high = fft.getEnergy("treble") / 255; 
+    let vol = amp.getLevel();
+
+    background(0, 2, 8); 
+
+    let zoomIntensity = map(bass, 0.7, 1, vol * 0.4, vol * 1.2, true);
+    smoothZoom = lerp(smoothZoom, 1.0 + zoomIntensity, 0.1);
+
+    push();
+    translate(width/2, height/2);
+    
+    let isDrop = bass > 0.83;
+    
+    for (let p of particles) {
+        if (isDrop) p.explode(bass);
+        p.update();
+        p.show(bass, isDrop);
+    }
+
+    scale(smoothZoom);
+    drawMandala(bass, mid, isDrop);
+    drawSolarCorona(bass, vol);
+
+    if (isDrop || vol > 0.3) {
+        drawPhoenixWings(bass, vol, high);
+    }
+
+    pop();
+
+    image(noiseGfx, 0, 0);
+    drawScanlines();
+    tOffset += 0.005 + (bass * 0.02);
+}
+
+class Particle {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.pos = p5.Vector.random2D().mult(random(0, 60));
+        this.vel = p5.Vector.random2D().mult(random(0.2, 1.5));
+        this.acc = createVector(0, 0);
+        this.alpha = random(50, 180);
+        this.size = random(1, 2.5);
+    }
+    explode(intensity) {
+        let force = this.pos.copy().normalize();
+        force.mult(intensity * 18);
+        this.acc.add(force);
+    }
+    update() {
+        let gravity = this.pos.copy().mult(-0.0008);
+        this.acc.add(gravity);
+        this.vel.add(this.acc);
+        this.vel.limit(7);
+        this.pos.add(this.vel);
+        this.acc.mult(0);
+        if (this.pos.mag() > width * 0.9) this.reset();
+    }
+    show(bass, isDrop) {
+        if (isDrop) {
+            stroke(colRebirth.levels[0], colRebirth.levels[1], colRebirth.levels[2], this.alpha);
+            strokeWeight(this.size + bass * 3);
+        } else {
+            stroke(255, this.alpha * (0.5 + bass)); 
+            strokeWeight(this.size);
+        }
+        point(this.pos.x, this.pos.y);
+    }
+}
+
+function drawMandala(bass, mid, isDrop) {
+    noFill();
+    strokeWeight(1.3);
+    let layers = 8;
+    for (let i = 0; i < layers; i++) {
+        push();
+        let speedMult = map(i, 0, layers, 2.0, 0.3);
+        rotate(tOffset * speedMult + (i * 0.3));
+        let size = 180 + (i * 35) + (mid * 130);
+        let alpha = map(i, 0, layers, 180, 20);
+        
+        if (isDrop) {
+            stroke(colRebirth.levels[0], colRebirth.levels[1], colRebirth.levels[2], alpha);
+        } else {
+            stroke(255, alpha * (0.3 + bass));
+        }
+        
+        beginShape();
+        for (let a = 0; a < TWO_PI; a += TWO_PI / 3) {
+            vertex(cos(a) * size, sin(a) * size);
+        }
+        endShape(CLOSE);
+        pop();
+    }
+}
+
+function drawSolarCorona(bass, vol) {
+    push();
+    let rBase = 150 + (bass * 50); 
+    for (let j = 0; j < 6; j++) {
+        let alpha = map(j, 0, 6, 150, 10);
+        let inter = map(j, 0, 6, 0, 1);
+        let col = lerpColor(lerpColor(colSunCore, colSunMid, inter), colSunOut, inter * 0.5);
+        fill(col.levels[0], col.levels[1], col.levels[2], alpha * (0.4 + bass));
+        noStroke();
+        beginShape();
+        for (let a = 0; a < TWO_PI; a += 0.15) {
+            let xoff = map(cos(a + tOffset), -1, 1, 0, 1.8);
+            let yoff = map(sin(a + tOffset), -1, 1, 0, 1.8);
+            let n = noise(xoff + j * 0.2, yoff + j * 0.2, tOffset * 1.2);
+            let r = rBase + map(n, 0, 1, -60, 60) * (1 + vol * 5);
+            vertex(r * cos(a), r * sin(a) * 0.96);
+        }
+        endShape(CLOSE);
+    }
+    pop();
+}
+
+function drawPhoenixWings(bass, vol, high) {
+    push();
+    stroke(colRebirth.levels[0], colRebirth.levels[1], colRebirth.levels[2], 180 * (0.2 + bass));
+    noFill();
+    strokeWeight(1.5 + bass * 3);
+    let wingSpan = 250 + (bass * 150) + (vol * 100);
+    let wingHeight = 400 + (bass * 200);
+
+    // Ala Derecha
+    beginShape();
+    for (let a = -PI/2; a < PI/2; a += 0.1) {
+        let xoff = map(cos(a + tOffset * 0.5), -1, 1, 0, 2);
+        let yoff = map(sin(a + tOffset * 0.5), -1, 1, 0, 2);
+        let n = noise(xoff, yoff, tOffset);
+        let r = wingSpan * random(0.8, 1.2);
+        let x = r * cos(a) * n;
+        let y = wingHeight * sin(a);
+        curveVertex(x, y);
+    }
+    endShape();
+
+    // Ala Izquierda
+    beginShape();
+    for (let a = PI/2; a < 3*PI/2; a += 0.1) {
+        let xoff = map(cos(a - tOffset * 0.5), -1, 1, 0, 2);
+        let yoff = map(sin(a - tOffset * 0.5), -1, 1, 0, 2);
+        let n = noise(xoff, yoff, tOffset + 10);
+        let r = wingSpan * random(0.8, 1.2);
+        let x = r * cos(a) * n;
+        let y = wingHeight * sin(a);
+        curveVertex(x, y);
+    }
+    endShape();
+    pop();
+}
+
+function drawScanlines() {
+    stroke(0, 45); 
+    for (let i = 0; i < height; i += 5) line(0, i, width, i);
+}
+
+document.getElementById('playBtn').addEventListener('click', () => {
+    document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', (e) => {
+    let file = e.target.files[0];
+    if (file) {
+        let url = URL.createObjectURL(file);
+        if (song) song.stop();
+        song = loadSound(url, () => {
+            userStartAudio();
+            document.getElementById('ui').classList.add('hidden');
+            song.play();
+        });
+    }
+});
+
+function windowResized() { resizeCanvas(windowWidth, windowHeight); }
+</script>
+</body>
+</html>
+```
+#### Enlace: 
+https://editor.p5js.org/Hannanah06/full/SKMcQPxlQ
+
+<img width="1865" height="988" alt="image" src="https://github.com/user-attachments/assets/edb96b52-5edb-405c-b570-05def0cb2f77" />
+
+<img width="1917" height="1011" alt="Captura de pantalla 2026-04-17 035758" src="https://github.com/user-attachments/assets/52784b93-e8d4-4de6-b602-d54f48aa37b4" />
+
 
 ## Bitácora de reflexión
