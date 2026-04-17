@@ -124,5 +124,44 @@ El *flocking* estándar produce un movimiento fluido y estable. Es fascinante po
 
 ## Bitácora de aplicación 
 ### Actividad 06
+#### Concepto: 
+La obra se llama "idk". Visualmente, representa el mito de Ícaro no como una caída, sino como una transformación. Se centra en un núcleo solar pulsante, rodeado de un sistema de partículas que actúan como "cenizas de oro" y geometrías fractales que simbolizan la ascensión y la divinidad.
+
+#### Relación entre la visual y la canción:
+La canción *Icarus* de ARTMS tiene una estructura que transita entre la vulnerabilidad y la explosión de poder (especialmente en el estribillo y el puente). La visual emula esto mediante el uso del color: tonos pálidos y movimientos erráticos durante los versos, que se transforman en un brillo dorado intenso y la aparición de "alas" de ruido Perlin cuando la música alcanza su punto máximo, reflejando la letra "reborn like a phoenix wing".
+
+#### Mapa de decisiones:
+✦ **Fondo Negro:** Para representar el vacío del espacio y dar jerarquía absoluta a la luz.
+
+✦ **Partículas con Gravedad Inversa:** Las partículas no caen; son atraídas por el sol o expulsadas por el bajo (fuerzas centrífugas).
+
+✦ **Geometría Triangular:** Uso de polígonos de tres lados en el mandala para evocar agresividad y ascensión.
+
+✦ **Textura de Ruido (CRT):** Decisión estética para darle un acabado de "metraje encontrado" o visión mística, alejándose de lo digital plano.
+
+#### Mapa de interpretación:
+✦ **El Sol:** Representa la meta, el deseo y la fuente de energía.
+
+✦ **Las Partículas:** Simbolizan las plumas y las cenizas del cuerpo de Ícaro que, al quemarse, se convierten en luz pura.
+
+✦ **El Zoom Reactivo:** Interpreta la "sofocación" y la intensidad del acercamiento al sol; la cámara parece vibrar por el calor y la presión del sonido.
+
+#### Justificación del algoritmo elegido:
+Se seleccionó un sistema de Agentes Autónomos y Ruido de Perlin.
+
+✦ **Ruido de Perlin:** Utilizado para las "Alas de Fénix" y la corona solar, ya que permite un movimiento fluido y orgánico que imita el fuego, imposible de lograr con aleatoriedad simple (*random*).
+
+✦ **Lévy Flight (implícito en explosiones):** Para que las partículas tengan cambios de ritmo bruscos durante el drop, simulando una desintegración física real.
+
+#### Explicación de la relación audio-visual:
+La relación es Directa y Paramétrica:
+
+✦ **Frecuencias Bajas (Bass):** Controlan el tamaño del sol y la fuerza de explosión de las partículas.
+
+✦ **Frecuencias Altas (Treble):** Modulan el brillo de las alas y la velocidad de rotación del mandala.
+
+✦ **Amplitud (Volumen):** Determina el nivel de zoom y el grosor de las líneas, creando una sinestesia donde el espectador "ve" la presión sonora de la producción de ARTMS.  
+
+#### Código:
 
 ## Bitácora de reflexión
