@@ -46,7 +46,7 @@ Escogí los siguientes ejemplos:
 ✦ **MouseConstraint (Interacción con el ratón):** Es un tipo especial de restricción que permite que el usuario interactúe con el mundo físico. Básicamente, "ata" el cursor del ratón a los cuerpos físicos para que se puedan pinchar, arrastrar o lanzar dentro del escenario. Sin esto, el mundo físico ocurriría de forma autónoma sin que se pudiera tocar nada.  
 
 ## Bitácora de aplicación 
-### Actividad 05
+### Actividad 05 °🌸˖𓍢ִִ໋🌼*˖:･
 
 
 ## Bitácora de reflexión
