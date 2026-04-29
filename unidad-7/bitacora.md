@@ -23,10 +23,11 @@ Escogí los siguientes ejemplos:
 - **La técnica:** La letra "C" de la palabra se presenta como un arco delgado y brillante, mientras que el resto de las letras están en un tono gris muy oscuro, casi fundiéndose con el fondo negro.
 - **Refuerzo del significado:** La manipulación visual imita exactamente el fenómeno de un eclipse solar. La "C" brillante representa el "anillo de diamante" o el último resplandor de luz solar que queda visible cuando la luna cubre el sol. El hecho de que el resto de la palabra sea apenas legible refuerza la idea de oscuridad y ocultamiento propia del evento astronómico.  
 
-**3) Propón 2 o 3 palabras propias y esboza cómo podrían representarse visualmente.**
+**3) Propón 2 o 3 palabras propias y esboza cómo podrían representarse visualmente.**  
+<img width="1280" height="960" alt="Act01" src="https://github.com/user-attachments/assets/df115b86-a8b6-46d3-9423-6f6d7f0bf87b" />
 
-
-**4) Indica cuál de esas palabras te interesa más y por qué.**
+**4) Indica cuál de esas palabras te interesa más y por qué.**  
+Siento que con la palabra "Bloom" podría haber una interacción más natural, ya que las "o" serían semillas que florecen, con la ayuda del usuario.
 
 ### Actividad 02
 **1) Explica con tus palabras qué hace cada uno de esos conceptos.**  
@@ -47,6 +48,39 @@ Escogí los siguientes ejemplos:
 
 ## Bitácora de aplicación 
 ### Actividad 05 °🌸˖𓍢ִִ໋🌼*˖:･
+**1) Palabra elegida.**  
+La palabra que yo elegí fue "Bloom", que significa *florecer* en inglés.  
 
+**2) Justificación conceptual.**  
+Esta obra se fundamenta en la idea del crecimiento orgánico impulsado por la interacción humana. Conceptualmente, la obra explora la relación entre el cuidado y la recompensa estética. Al utilizar la metáfora de una regadera, el usuario deja de ser un espectador pasivo para convertirse en un agente vital (un "cuidador").
+
+**3) Análisis de su significado visual y comportamental.**  
+
+✦ **Significado Visual:**  
+- **Tipografía y Vegetación:** El uso de la fuente *Fraunces* (una tipografía con serifas pronunciadas y elegantes) junto con las ramas dibujadas mediante curvas de Bézier, crea una armonía entre lo editorial y lo natural.
+- **Paleta de Colores:** Se emplean colores vibrantes pero suavizados (corales, lilas, turquesas) para las flores, lo que comunica delicadeza. El rastro de partículas de agua en tonos turquesa refuerza la fluidez y la limpieza visual.
+- **Composición:** La disposición central de las letras "B L M" actúa como el núcleo del jardín, donde las flores no son solo adornos, sino que completan la palabra, sugiriendo que la belleza es necesaria para la integridad del mensaje.  
+
+✦ **Significado Conceptual:**  
+- **Crecimiento por Proximidad:** El comportamiento de las flores está ligado a la cercanía de la regadera. Esto simula una "atención dirigida". Si el usuario deja de regar, el crecimiento se detiene, lo que refuerza la idea de persistencia en el cuidado.
+- **Física de Partículas:** La implementación de gravedad y aceleración en las gotas de agua añade una capa de realismo físico que contrasta con la naturaleza mágica de las flores, creando un equilibrio entre lo tangible y lo fantástico.
+
+**5) Bocetos:**  
+<img width="1280" height="960" alt="Bloom" src="https://github.com/user-attachments/assets/d54efd7b-0cf2-4765-b095-b02caee52407" />  
+
+**8) Explicación de la relación entre audio y comportamiento.**  
+La integración del sonido en este proyecto no es meramente ambiental, sino reactiva y funcional:  
+
+✦ **Feedback Sensorial:** El audio actúa como una confirmación inmediata de la interacción exitosa. Cuando el usuario riega la zona activa de la flor, el sonido de "magia misteriosa" se dispara, validando la acción de "dar vida".  
+
+✦ **Sincronía Evolutiva:** Existe una relación directa entre el volumen y la persistencia del sonido con el estado de crecimiento. El uso de un *GainNode* para crear una rampa exponencial de volumen permite que cada "gota" sonora tenga una estela, similar a cómo el agua nutre la tierra incluso después de que cae.  
+
+✦ **Variabilidad Orgánica:** El código altera ligeramente la velocidad de reproducción (*playbackRate*) en cada disparo. Esto evita la monotonía mecánica, haciendo que cada interacción suene única, tal como en la naturaleza nada se repite exactamente igual.
+
+**10) Código fuente:**  
+
+**11) Enlace al sketch:**  
+
+**12) Capturas:**  
 
 ## Bitácora de reflexión
